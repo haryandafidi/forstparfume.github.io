@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Forst Parfume - Parfum lokal berkualitas dengan aroma elegan, tersedia di Shopee dan WhatsApp." />
+    <title>Forst Parfume</title>
+    <style>
+        /* Mengatur box-sizing secara global untuk konsistensi */
+        html {
+            box-sizing: border-box;
+        }
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('bg2.jpg'); /* Pastikan bg3.jpg ada di lokasi yang benar */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+        }
+
+        /* --- START: CSS untuk Promo Berita Bergerak --- */
+        .promo-container {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: border-box;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px 0;
+            border-bottom: 1px solid #555;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 15px;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+        }
+
+        .promo-text {
+            display: inline-block;
+            padding-left: 100%;
+            animation: scroll-promo 90s linear infinite; /* Sesuaikan kecepatan di sini (e.g., 60s, 120s) */
+        }
+
+        .promo-text span {
+            margin-right: 120px;
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        @keyframes scroll-promo {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(-100%, 0);
+            }
+        }
+        /* --- END: CSS untuk Promo Berita Bergerak --- */
+
+        .content {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: transparent;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 30px;
+        }
+
+        .button {
+            display: block;
+            width: 250px;
+            text-align: center;
+            padding: 15px;
+            margin: 10px auto;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .instagram {
+            background: #c13584;
+        }
+        .shopee {
+            background: #ee4d2d;
+        }
+        .whatsapp {
+            background: #25d366;
+        }
+
+        .produk-section-forst, .produk-section {
+            padding: 40px 0; /* Padding vertikal tetap, horizontal dihilangkan karena ada di .produk-container */
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+        }
+        .produk-section-forst h2, .produk-section h2 {
+            padding: 0 20px; /* Tambahkan padding ke judul agar tidak terlalu mepet tepi */
+            margin-bottom: 30px;
+        }
+
+
+        .produk-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 20px;
+            padding: 0 20px 10px 20px; /* **PERUBAHAN PENTING DI SINI** */
+            justify-content: flex-start; /* **PERUBAHAN PENTING DI SINI: Mulai dari kiri** */
+            /* justify-content: center; */ /* Ini bisa menyebabkan item terakhir terpotong jika total lebar tidak pas dengan layar */
+            -webkit-overflow-scrolling: touch; /* Untuk scrolling yang lebih halus di iOS */
+            /* Pastikan ada ruang cukup di kanan jika jumlah card ganjil dan justify-content: center */
+        }
+
+        .card {
+            min-width: 250px;
+            flex-shrink: 0; /* **PERUBAHAN PENTING DI SINI: Mencegah card menyusut terlalu banyak** */
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: 0.3s;
+            color: #000;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 15px;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0 5px;
+        }
+
+        .card-volume {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .card-price {
+            color: #28a745;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* --- START: Gaya untuk Tombol Pembelian di Card --- */
+        .card-buttons-wrapper {
+            display: flex;
+            gap: 10px;
+            padding: 0 15px 15px;
+            justify-content: center;
+            margin-top: auto;
+        }
+
+        .card-btn {
+            flex: 1;
+            display: block;
+            text-align: center;
+            padding: 10px 10px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 13px;
+            cursor: pointer;
+            color: white;
+            white-space: nowrap;
+        }
+
+        .card-btn.shopee-btn {
+            background-color: #ee4d2d;
+        }
+
+        .card-btn.shopee-btn:hover {
+            background-color: #d13d21;
+        }
+
+        .card-btn.whatsapp-btn {
+            background-color: #25d366;
+        }
+
+        .card-btn.whatsapp-btn:hover {
+            background-color: #1ea34b;
+        }
+        
+        .footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #ccc;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 14px;
+            border-top: 1px solid #333;
+            margin-top: 40px;
+        }
+
+        .footer p {
+            margin: 5px 0;
+            color: #ccc;
+        }
+
+        .footer a {
+            color: #007bff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer .social-icons {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        .footer .social-icons a {
+            display: inline-block;
+            margin: 0 8px;
+            color: #fff;
+            font-size: 24px;
+            text-decoration: none;
+            filter: brightness(0) invert(1);
+        }
+        .modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 500px;        
+  max-width: 95%;       
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+        /* --- END: CSS untuk Footer --- */
+
+    </style>
+</head>
+<body>
+    <div class="promo-container">
+        <div class="promo-text">
+            <span>🎉 **Promo Spesial:** Dapatkan Mini Forst gratis 1 pcs setiap pembelian 3 pcs!</span>
+            <span>✨ **Stok Terbatas:** Aroma terbaru 'Summer Black' kini tersedia!</span>
+            <span>🎁 **Gabung Reseller:** Raih keuntungan menarik hingga 30%! Info lebih lanjut hubungi admin.</span>
+            <span>🌟 **Diskon 15%** untuk pembelian pertama via WhatsApp!</span>
+            <span>🔥 Jangan lewatkan penawaran terbaik bulan ini, hanya di Forst Parfume!</span>
+        </div>
+    </div>
+    <div class="content">
+        <h1>Forst Parfume</h1>
+        <p>Temukan aroma terbaik dari kami</p>
+
+        <a href="https://www.instagram.com/forst_parfume/" target="_blank" class="button instagram">Instagram</a>
+        <a href="https://shopee.co.id/forstparfume" target="_blank" class="button shopee">Shopee</a>
+        <a href="https://wa.me/6281396058382" target="_blank" class="button whatsapp">Hubungi Admin (WhatsApp)</a>
+    </div>
+    
+    <div class="produk-section-forst">
+        <h2 style="text-align:center;">Brand Forst</h2>
+        <div class="produk-container">
+
+            <div class="card">
+                <img src="regular1.png" alt="Regular" />
+                 <div class="badge">⭐ Customer Favorite</div>
+                <div class="card-body">
+                    <div class="card-title">Regular</div>
+                    <div class="card-volume">30 ml</div>
+                    <div class="card-price">Rp 55.000</div>
+                    
+                </div>
+                <div class="card-buttons-wrapper">
+                    <a href="https://shopee.co.id/forstparfume" target="_blank" class="card-btn shopee-btn">Beli di Shopee</a>
+                    <a href="https://wa.me/6281396058382?text=Halo%20Admin%2C%20saya%20tertarik%20dengan%20produk%20Forst%20Parfume%20%27Regular%27%2030%20ml.%20Apakah%20stoknya%20tersedia%3F%20Terima%20kasih." target="_blank" class="card-btn whatsapp-btn">Pesan via WA</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="sotb1.jpg" alt="Classic Forst" />
+                <div class="card-body">
+                    <div class="card-title">Classic Forst</div>
+                    <div class="card-volume">35 ml</div>
+                    <div class="card-price">Rp 69.900</div>
+                </div>
+                <div class="card-buttons-wrapper">
+                    <a href="https://shopee.co.id/forstparfume" target="_blank" class="card-btn shopee-btn">Beli di Shopee</a>
+                    <a href="https://wa.me/6281396058382?text=Halo%20Admin%2C%20saya%20tertarik%20dengan%20produk%20Forst%20Parfume%20%27Classic%27%2030%20ml.%20Apakah%20stoknya%20tersedia%3F%20Terima%20kasih." target="_blank" class="card-btn whatsapp-btn">Pesan via WA</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="miniforst.jpeg" alt="Mini Forst" />
+                <div class="card-body">
+                    <div class="card-title">Mini Forst</div>
+                    <div class="card-volume">15 ml</div>
+                    <div class="card-price">Rp 29.900</div>
+                </div>
+                <div class="card-buttons-wrapper">
+                    <a href="https://shopee.co.id/forstparfume" target="_blank" class="card-btn shopee-btn">Beli di Shopee</a>
+                    <a href="https://wa.me/6281396058382?text=Halo%20Admin%2C%20saya%20tertarik%20dengan%20produk%20Forst%20Parfume%20%27Mini%20Forst%27%2015%20ml.%20Apakah%20stoknya%20tersedia%3F%20Terima%20kasih." target="_blank" class="card-btn whatsapp-btn">Pesan via WA</a>
+                </div>
+            </div>
+
+             <div class="card">
+                <img src="forst 10 ml.jpg" alt="Coming Soon" />
+                  <div class="badge">🆕 New Arrival</div>
+                <div class="card-body">
+                    <div class="card-title">Coming Soon</div>
+                    <div class="card-volume">10 ml</div>
+                    <div class="card-price">Rp 2?</div>
+                </div>
+                <div class="card-buttons-wrapper">
+                    <a href="https://shopee.co.id/forstparfume" target="_blank" class="card-btn shopee-btn">Beli di Shopee</a>
+                    <a href="https://wa.me/6281396058382?text=Halo%20Admin%2C%20saya%20tertarik%20dengan%20produk%20Forst%20Parfume%20%27Regular%27%2030%20ml.%20Apakah%20stoknya%20tersedia%3F%20Terima%20kasih." target="_blank" class="card-btn whatsapp-btn">Pesan via WA</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="produk-section">
+        <h2 style="text-align:center;">Produk Unggulan</h2>
+        <div class="produk-container">
+
+            <div class="card">
+                <img src="summerblack.jpg" alt="Summer Black" />
+                 <div class="badge">🔥 Best Seller</div>
+                <div class="card-body">
+                    <div class="card-title">Summer Black</div>
+                    <div class="card-volume">30 ml</div>
+                    <div class="card-price">Rp 69.900</div>
+                </div>
+                <div class="card-buttons-wrapper">
+                    <a href="https://shopee.co.id/forstparfume" target="_blank" class="card-btn shopee-btn">Beli di Shopee</a>
+                    <a href="https://wa.me/6281396058382?text=Halo%20Admin%2C%20saya%20tertarik%20dengan%20produk%20Forst%20Parfume%20%27Summer%20Black%27%2030%20ml.%20Apakah%20stoknya%20tersedia%3F%20Terima%20kasih." target="_blank" class="card-btn whatsapp-btn">Pesan via WA</a>
+                  <button class="btn-info" onclick="openAromaModal('SUMMER BLACK', 
+                  '<b>Top Note:</b> Bergamot memberikan kesan segar dan sedikit citrus pada fase awal parfum.<br>' +
+                  '<b>Middle Note:</b> Melati dan dupa memberikan aroma bunga yang elegan dan hangat, dikombinasikan dengan aroma smoky dari dupa.<br>' +
+                  '<b>Base Note:</b>Ambroxan, benzoin, kayu-kayuan, dan vanila memberikan aroma manis, hangat, dan sedikit powdery yang tahan lama.<br><br>' +
+                  'Parfum ini cocok untuk acara malam hari atau cuaca dingin karena kehangatan aromanya.')">⋯</button>
+
+                </div>
+             </div>    
+            
+            <div class="card">
+                <img src="sotb1.jpg" alt="S.O.T.B" />
+                 <div class="badge">🔥 Best Seller</div>
+                <div class="card-body">
+                    <div class="card-title">S.O.T.B</div>
+                    <div class="card-volume">30 ml</div>
+                    <div class="card-price">Rp 69.900</div>
+                </div>
+                <div class="card-buttons-wrapper">
+                    <a href="https://shopee.co.id/forstparfume" target="_blank" class="card-btn shopee-btn">Beli di Shopee</a>
+                    <a href="https://wa.me/6281396058382?text=Halo%20Admin%2C%20saya%20tertarik%20dengan%20produk%20Forst%20Parfume%20%27S.O.T.B%27%2030%20ml.%20Apakah%20stoknya%20tersedia%3F%20Terima%20kasih." target="_blank" class="card-btn whatsapp-btn">Pesan via WA</a>
+                   <button class="btn-info" onclick="openAromaModal('S.O.T.B', 
+                  '<b>Top Note:</b> Mandarin memberikan aroma segar dan ceria, sedangkan Galbanum memberikan sentuhan hijau yang alami.<br>' +
+                  '<b>Middle Note:</b> Tuberose dan Jasmine menghadirkan aroma bunga yang manis dan elegan.<br>' +
+                  '<b>Base Note:</b> Vanilla, Tonka Bean, dan Musk memberikan kehangatan, kelembutan, dan daya tahan aroma yang lama.<br><br>' +
+                  'Aroma S.O.T.B secara keseluruhan menciptakan kesan tropis yang menyegarkan dan ceria, mengingatkan pada suasana pantai dengan sentuhan manis dan hangat dari vanilla dan tonka bean. ')">⋯</button>
+
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="skypulse1.jpg" alt="Sky Pulse" />
+                <div class="card-body">
+                    <div class="card-title">Sky Pulse</div>
+                    <div class="card-volume">30 ml</div>
+                    <div class="card-price">Rp 69.900</div>
+                </div>
+                <div class="card-buttons-wrapper">
+                    <a href="https://shopee.co.id/forstparfume" target="_blank" class="card-btn shopee-btn">Beli di Shopee</a>
+                    <a href="https://wa.me/6281396058382?text=Halo%20Admin%2C%20saya%20tertarik%20dengan%20produk%20Forst%20Parfume%20%27Sky%20Pulse%27%2030%20ml.%20Apakah%20stoknya%20tersedia%3F%20Terima%20kasih." target="_blank" class="card-btn whatsapp-btn">Pesan via WA</a>
+                     <button class="btn-info" onclick="openAromaModal('Sky Pulse', 
+                  '<b>Top Note:</b> Citrus (segar), blackcurrant (manis dan sedikit asam).<br>' +
+                  '<b>Middle Note:</b> Jasmine (floral lembut).<br>' +
+                  '<b>Base Note:</b>Musk (hangat, tahan lama). <br><br>' +
+                  'Secara keseluruhan, parfum Sky Pulse menawarkan aroma yang segar, elegan, dan sedikit manis, cocok untuk penggunaan sehari-hari maupun acara khusus. ')">⋯</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="axioncreed.jpg" alt="Axion Creed" />
+                <div class="card-body">
+                    <div class="card-title">Axion Creed</div>
+                    <div class="card-volume">30 ml</div>
+                    <div class="card-price">Rp 69.900</div>
+                </div>
+                <div class="card-buttons-wrapper">
+                    <a href="https://shopee.co.id/forstparfume" target="_blank" class="card-btn shopee-btn">Beli di Shopee</a>
+                    <a href="https://wa.me/6281396058382?text=Halo%20Admin%2C%20saya%20tertarik%20dengan%20produk%20Forst%20Parfume%20%27Axion%20Creed%27%2030%20ml.%20Apakah%20stoknya%20tersedia%3F%20Terima%20kasih." target="_blank" class="card-btn whatsapp-btn">Pesan via WA</a>
+                <button class="btn-info" onclick="openAromaModal('Axion Creed', 
+                  '<b>Top Note:</b> Jeruk bali, apel hijau, lemon, lavender, sea notes, bergamot Sisilia, dan lemon. <br>' +
+                  '<b>Middle Note:</b> Gardenia, melati, bunga lili, geranium, cedar, kapulaga, dan kemangi manis. <br>' +
+                  '<b>Base Note:</b> Musk, kayu cendana, tonka bean, nilam, dan amber. <br><br>' +
+                  'Aroma Lamborghini cocok digunakan pada malam hari, cuaca dingin, atau saat menghadiri acara formal.')">⋯</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="forst 30 ml.png" alt="Black Opium" />
+                <div class="card-body">
+                    <div class="card-title">Black Opium"</div>
+                    <div class="card-volume">30 ml</div>
+                    <div class="card-price">Rp 55.000</div>
+                </div>
+                <div class="card-buttons-wrapper">
+                    <a href="https://shopee.co.id/forstparfume" target="_blank" class="card-btn shopee-btn">Beli di Shopee</a>
+                    <a href="https://wa.me/6281396058382?text=Halo%20Admin%2C%20saya%20tertarik%20dengan%20produk%20Forst%20Parfume%20%27Pink%20Chiffon%27%2030%20ml.%20Apakah%20stoknya%20tersedia%3F%20Terima%20kasih." target="_blank" class="card-btn whatsapp-btn">Pesan via WA</a>
+                    <button class="btn-info" onclick="openAromaModal('Black Opium', 
+                  '<b>Top Note:</b> pear, pink pepper, orange blossom. <br>' +
+                  '<b>Middle Note:</b> coffee, jasmine, bitter almond dan licorice.<br>' +
+                  '<b>Base Note:</b> anilla, patchouli, cashmere wood dan cedar.<br><br>' +
+                  'Aroma Black Opium Elegan banget, cocok buat dipake acara malem/wedding. ')">⋯</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="regular1.png" alt="Scandalous" />
+                <div class="card-body">
+                    <div class="card-title">Scandalous</div>
+                    <div class="card-volume">30 ml</div>
+                    <div class="card-price">Rp 55.000</div>
+                </div>
+                <div class="card-buttons-wrapper">
+                    <a href="https://shopee.co.id/forstparfume" target="_blank" class="card-btn shopee-btn">Beli di Shopee</a>
+                    <a href="https://wa.me/6281396058382?text=Halo%20Admin%2C%20saya%20tertarik%20dengan%20produk%20Forst%20Parfume%20%27Scandalous%27%2030%20ml.%20Apakah%20stoknya%20tersedia%3F%20Terima%20kasih." target="_blank" class="card-btn whatsapp-btn">Pesan via WA</a>
+                     <button class="btn-info" onclick="openAromaModal('Black Opium', 
+                  '<b>Top Note:</b> Raspberry.<br>' +
+                  '<b>Middle Note:</b> Black Peony.<br>' +
+                  '<b>Base Note:</b>praline.br><br>' +
+                  'Wangi ini cocok banget buat kamu yang lagi santai beraktifitas. ')">⋯</button>
+                </div>
+            </div>
+        </div>
+    </div>
+     <div class="produk-section2">
+        <h2 style="text-align:center;">Produk Promo</h2>
+        <div class="produk-container">
+
+         <div class="card">
+                <img src="miniforst.jpeg" alt="BUY 3 GET 1" />
+                <div class="card-body">
+                    <div class="card-title">BUY 3 GET 1</div>
+                    <div class="card-volume">15 ml</div>
+                    <div class="card-price">Rp 75.000</div>
+                </div>
+                <div class="card-buttons-wrapper">
+                    <a href="https://seller.shopee.co.id/portal/product/26028022102" target="_blank" class="card-btn shopee-btn">Beli di Shopee</a>
+                    <a href="https://wa.me/6281396058382?text=Halo%20Admin%2C%20saya%20tertarik%20dengan%20produk%20Forst%20Parfume%20%27Classic%27%2030%20ml.%20Apakah%20stoknya%20tersedia%3F%20Terima%20kasih." target="_blank" class="card-btn whatsapp-btn">Pesan via WA</a>
+                </div>
+            </div>     
+        </div>
+    </div>     
+    
+    <div id="aroma-modal" class="modal" style="display: none;">
+  <div class="modal-content">
+   <span onclick="closeAromaModal()" style="float:right; cursor:pointer;Color: black;">×</span>
+    <h3 id="aroma-title" style="color: black;">Parfum Lavender</h3>
+    <p id="aroma-description" style="color: black;">Aroma lavender yang menenangkan dan segar.</p>
+  </div>
+</div>
+    <script src="https://utteranc.es/client.js"
+        repo="haryandafidi/forst"
+        issue-term="pathname"
+        label="Comment" 
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+
+    <footer class="footer">
+        <p>
+            Forst Parfume &copy; 2025. All rights reserved.
+        </p>
+        <p>
+            Temukan aroma terbaik dan bergabunglah dengan komunitas kami!
+        </p>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/Forst_hs" target="_blank" title="Ikuti kami di Instagram">
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/instagram-new.png" alt="Instagram" style="vertical-align: middle;">
+            </a>
+            <a href="https://shopee.co.id/Tokosiniajala" target="_blank" title="Kunjungi toko resmi kami hanya di Shopee">
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/shopee.png" alt="Shopee" style="vertical-align: middle;">
+            </a>
+            <a href="https://wa.me/6281396058382" target="_blank" title="Hubungi kami via WhatsApp">
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/whatsapp--v1.png" alt="WhatsApp" style="vertical-align: middle;">
+            </a>
+        </div>
+        <p>
+            <a href="#" title="Baca Kebijakan Privasi kami">Kebijakan Privasi</a> |
+            <a href="#" title="Baca Syarat & Ketentuan kami">Syarat & Ketentuan</a>
+        </p>
+        <p>
+            Lokasi: Medan, Sumatera Utara, Indonesia
+        </p>
+    </footer>
+    <script>
+function openAromaModal(title, description) {
+ document.getElementById('aroma-title').innerText = title;
+  document.getElementById('aroma-description').innerHTML = description; 
+  document.getElementById('aroma-modal').style.display = 'flex';
+}
+
+function closeAromaModal() {
+  document.getElementById('aroma-modal').style.display = 'none';
+}
+</script>
+</body>
+</html>
